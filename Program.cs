@@ -71,7 +71,7 @@ namespace RunOnDisplayWakeup
                     {
                         if (_launchOnNextTick)
                         {
-                            _logger.LogInformation("Killing current {processName} process.", processName);
+                            _logger.LogInformation("Gracefully shutting down current {processName} process.", processName);
 
                             _launchOnNextTick = false;
 
@@ -85,6 +85,13 @@ namespace RunOnDisplayWakeup
 
                             var processTaskKill = Process.Start(pInfo2)!;
                             await processTaskKill.WaitForExitAsync(CancellationToken.None);
+
+                            foreach (var process in Process.GetProcessesByName(processName?.Replace(".exe", "")))
+                            {
+                                _logger.LogInformation("{processName} did not end gracefully, killing it.", processName);
+
+                                process.Kill();
+                            }
 
                             _logger.LogInformation("Process {processName} terminated.", processName);
 
