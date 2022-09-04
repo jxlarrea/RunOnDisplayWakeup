@@ -4,7 +4,6 @@
 	<TargetFramework>net6.0</TargetFramework>
 	<Nullable>enable</Nullable>
 	<ImplicitUsings>enable</ImplicitUsings>
-	<UserSecretsId>dotnet-run_on_display_wakeup-C7A2493C-0F88-4EB5-8D18-E4E6326B9C01</UserSecretsId>
 	<RootNamespace>run_on_display_wakeup</RootNamespace>
 	<OutputType>WinExe</OutputType>
 	<PublishSingleFile Condition="'$(Configuration)' == 'Release'">true</PublishSingleFile>
