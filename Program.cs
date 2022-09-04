@@ -78,7 +78,7 @@ namespace RunOnDisplayWakeup
                             var pInfo2 = new ProcessStartInfo("taskkill"!)
                             {
                                 WorkingDirectory = workingDirectory,
-                                Arguments = $"/IM {processName}",
+                                Arguments = $"/T /IM {processName}",
                                 UseShellExecute = false,
                                 CreateNoWindow = true,
                             };
@@ -110,7 +110,7 @@ namespace RunOnDisplayWakeup
                     }
                 }
             }
-            catch (OperationCanceledException ex)
+            catch (Exception ex)
             {
                 _logger.LogError(ex, "{Message}", ex.Message);
                 Environment.Exit(1);
